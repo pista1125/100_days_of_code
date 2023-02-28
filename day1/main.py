@@ -1,0 +1,5 @@
+a = input("What is your name?\n ")
+print("Thank you " + a)
+b = input("Now What is your dog name?\n")
+print("Thank you " + a)
+print("Your Band name could be " + a + b)

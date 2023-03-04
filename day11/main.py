@@ -1,95 +1,94 @@
 #1. Black jack project
-# import random
-# cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-# from art import logo
-# def player_game(player, score_player):
-#     choice = random.choice(cards)
-#     score_player += choice
-#     player.append(choice)
-#     #print(f"player card: {player} and the score is {score_player}")
-#     return score_player
-# def computer_game(computer, score_comp):
-#     comp_choice = random.choice(cards)
-#     computer.append(comp_choice)
-#     score_comp += comp_choice
-#     #print(f"computer cards: {computer} and the score is {score_comp}")
-#     return score_comp
-# def black_jack(score_player, player):
-#     if score_player == 21 and len(player) == 2:
-#         print("You have a Black Jack. You Win!")
-#         return 0
-#
-# def play_game():
-#     computer = []
-#     score_comp = 0
-#     player = []
-#     score_player = 0
-#     game = True
-#
-#     score_player = player_game(player, score_player)
-#     print(f"player card: {player} and the score is {score_player}")
-#     score_comp = computer_game(computer, score_comp)
-#     print(f"computer cards: {computer} and the score is {score_comp}")
-#     score_player = player_game(player, score_player)
-#     print(f"player card: {player} and the score is {score_player}")
-#     black_jack(score_player, player)
-#     if black_jack(score_player, player) == 0:
-#         game = False
-#     else:
-#         cont = input("Do you want more card? ")
-#     while game:
-#         if cont == "yes":
-#             print(f"computer cards: {computer} and the score is {score_comp}")
-#             score_player = player_game(player, score_player)
-#             print(f"player card: {player} and the score is {score_player}")
-#             if score_player > 21 and 11 in player:
-#                 player.remove(11)
-#                 player.append(1)
-#                 score_player = sum(player)
-#                 print(f"player card: {player} and the score is {score_player}")
-#                 cont = input("Do you want more card? ")
-#             elif score_player > 21:
-#                 print("you lose!")
-#                 game = False
-#             else:
-#                 cont = input("Do you want more card? ")
-#
-#         else:
-#             if score_comp < 17:
-#                 score_comp = computer_game(computer, score_comp)
-#             else:
-#                 if score_comp > 21:
-#                     print(f"computer cards: {computer} and the score is {score_comp}")
-#                     print(f"player card: {player} and the score is {score_player}")
-#                     print("You win")
-#                     game = False
-#                 elif score_comp == score_player:
-#                     print(f"computer cards: {computer} and the score is {score_comp}")
-#                     print(f"player card: {player} and the score is {score_player}")
-#                     print("Draw")
-#                     game = False
-#                 elif score_comp < score_player:
-#                     print(f"computer cards: {computer} and the score is {score_comp}")
-#                     print(f"player card: {player} and the score is {score_player}")
-#                     print("You win")
-#                     game = False
-#                 elif score_comp > score_player:
-#                     print(f"computer cards: {computer} and the score is {score_comp}")
-#                     print(f"player card: {player} and the score is {score_player}")
-#                     print("You lose")
-#                     game = False
-#
-#
-# play = "yes"
-# a = 0
-# while play == "yes":
-#     if a == 0:
-#         print(logo)
-#         play = input("Do you want to play game? ")
-#         a += 1
-#     play_game()
-#     print(logo)
-#     play = input("Do you want to play game? ")
+import random
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+from art import logo
+def player_game(player, score_player):
+    choice = random.choice(cards)
+    score_player += choice
+    player.append(choice)
+    #print(f"player card: {player} and the score is {score_player}")
+    return score_player
+def computer_game(computer, score_comp):
+    comp_choice = random.choice(cards)
+    computer.append(comp_choice)
+    score_comp += comp_choice
+    #print(f"computer cards: {computer} and the score is {score_comp}")
+    return score_comp
+def black_jack(score_player, player):
+    if score_player == 21 and len(player) == 2:
+        print("You have a Black Jack. You Win!")
+        return 0
+
+def play_game():
+    computer = []
+    score_comp = 0
+    player = []
+    score_player = 0
+    game = True
+
+    score_player = player_game(player, score_player)
+    print(f"player card: {player} and the score is {score_player}")
+    score_comp = computer_game(computer, score_comp)
+    print(f"computer cards: {computer} and the score is {score_comp}")
+    score_player = player_game(player, score_player)
+    print(f"player card: {player} and the score is {score_player}")
+    black_jack(score_player, player)
+    if black_jack(score_player, player) == 0:
+        game = False
+    else:
+        cont = input("Do you want more card? ")
+    while game:
+        if cont == "yes":
+            print(f"computer cards: {computer} and the score is {score_comp}")
+            score_player = player_game(player, score_player)
+            print(f"player card: {player} and the score is {score_player}")
+            if score_player > 21 and 11 in player:
+                player.remove(11)
+                player.append(1)
+                score_player = sum(player)
+                print(f"player card: {player} and the score is {score_player}")
+                cont = input("Do you want more card? ")
+            elif score_player > 21:
+                print("you lose!")
+                game = False
+            else:
+                cont = input("Do you want more card? ")
+
+        else:
+            if score_comp < 17:
+                score_comp = computer_game(computer, score_comp)
+            else:
+                if score_comp > 21:
+                    print(f"computer cards: {computer} and the score is {score_comp}")
+                    print(f"player card: {player} and the score is {score_player}")
+                    print("You win")
+                    game = False
+                elif score_comp == score_player:
+                    print(f"computer cards: {computer} and the score is {score_comp}")
+                    print(f"player card: {player} and the score is {score_player}")
+                    print("Draw")
+                    game = False
+                elif score_comp < score_player:
+                    print(f"computer cards: {computer} and the score is {score_comp}")
+                    print(f"player card: {player} and the score is {score_player}")
+                    print("You win")
+                    game = False
+                elif score_comp > score_player:
+                    print(f"computer cards: {computer} and the score is {score_comp}")
+                    print(f"player card: {player} and the score is {score_player}")
+                    print("You lose")
+                    game = False
+
+play = "yes"
+a = 0
+while play == "yes":
+    if a == 0:
+        print(logo)
+        play = input("Do you want to play game? ")
+        a += 1
+    play_game()
+    print(logo)
+    play = input("Do you want to play game? ")
 
 #2. Black jack origin version
 

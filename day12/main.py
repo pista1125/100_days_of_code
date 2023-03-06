@@ -178,4 +178,4 @@ while play == "yes":
     elif play == "no":
         print("Good bye")
     else:
-        print("You are a stupid! You can't, play anymore.")
+        print("You are a stupid! You can't play anymore.")

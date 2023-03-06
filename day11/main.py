@@ -257,7 +257,7 @@
 #                     print(f"player card: {player} and the score is {score_player}")
 #                     print("You lose")
 #                     game = False
-#
+
 # play = "yes"
 # a = 0
 # while play == "yes":
@@ -567,9 +567,6 @@ while play == "y":
 # print(a)
 # print(b)
 
-
-proba = "hello", "bello", "jozso"
-print(proba)
 
 
 

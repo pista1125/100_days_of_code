@@ -16,6 +16,8 @@ def check(pick_1, pick_2, choice):
     elif choice == "b":
         if pick_1["follower_count"] < pick_2["follower_count"]:
             return True
+    else:
+        return "What"
 def game():
     pick_2 = pick()
     should_cont = True
@@ -32,13 +34,15 @@ def game():
         choice = input("Who has more followers? 'A' or 'B' ").lower()
         checking = check(pick_1, pick_2, choice)
         clear()
-        if checking:
+        if checking == True:
             score += 1
             print(f"You're right! Current score: {score}.")
-        else:
+        elif checking == False:
             should_cont = False
             print(f"Sorry, that's wrong. Final score: {score}")
-
+        else:
+            print("You are stupid.")
+            should_cont = False
 
 game()
 

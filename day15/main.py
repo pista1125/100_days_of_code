@@ -361,7 +361,7 @@ def game():
           f"cappuccino is: ${MENU['cappuccino']['cost']}")
     is_game = True
     while is_game:
-        button = input("What would you like to do? (espresso/latte/cappuccino): ")
+        button = input("What would you like to do? (espresso/latte/cappuccino): ").lower()
         if button == "report":
             report()
         elif button == "off":

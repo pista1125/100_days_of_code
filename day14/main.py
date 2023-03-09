@@ -18,7 +18,9 @@ def check(pick_1, pick_2, choice):
             return True
     else:
         return "What"
-def game():
+
+
+def game1():
     pick_2 = pick()
     should_cont = True
     score = 0
@@ -44,7 +46,7 @@ def game():
             print("You are stupid.")
             should_cont = False
 
-game()
+game1()
 
 
 #2.Game origin version

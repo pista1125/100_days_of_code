@@ -155,66 +155,66 @@
 # game()
 
 #3. coffe machine turbo version
-from art import logo
-from list import MENU, resources, profit
-
-
-def report():
-    print(f"Water: {resources['water']}")
-    print(f"Milk: {resources['milk']}")
-    print(f"Coffee: {resources['coffee']}")
-    print(f"Profit: ${profit['prof']}")
-
-
-def insert_money():
-    print("insert a coin")
-    a = float(input("How many quarters?: "))
-    b = float(input("How many dime?: "))
-    c = float(input("How many nickles?: "))
-    d = float(input("How many pennies?:"))
-    coin = a * 0.25 + b * 0.10 + c * 0.05 + d * 0.01
-    return round(coin, 2)
-
-
-def checking(button):
-    for item in resources:
-        if resources[item] < MENU[button]["ingredients"][item]:
-            print(f"Sorry don't have enough {item}")
-            return False
-        else:
-            return True
-
-def lost(button):
-    for item in resources:
-        resources[item] -= MENU[button]['ingredients'][item]
-
-
-def game():
-    print(logo)
-    is_game = True
-    while is_game:
-        button = input("What would you like to do? (espresso/latte/cappuccino): ")
-        if button == "report":
-            report()
-        elif button == "off":
-            is_game = False
-        elif button == 'espresso' or button == 'latte' or button == 'cappuccino':
-            check = checking(button)
-            if check:
-                money = insert_money()
-                if money >= MENU[button]['cost']:
-                    lost(button)
-                    change = round(money - MENU[button]["cost"], 2)
-                    print(f"Here is your change: {change}")
-                    print(f"Here is your {button}. Enjoy it.")
-                    profit['prof'] += (money - change)
-                elif money < MENU[button]['cost']:
-                    print(f"Sorry, you don't give me enough money, because you gave me ${money}, and a {button} is ${MENU[button]['cost']}")
-        else:
-            print("You puss a wrong button")
-
-
-game()
+# from art import logo
+# from list import MENU, resources, profit
+#
+#
+# def report():
+#     print(f"Water: {resources['water']}")
+#     print(f"Milk: {resources['milk']}")
+#     print(f"Coffee: {resources['coffee']}")
+#     print(f"Profit: ${profit['prof']}")
+#
+#
+# def insert_money():
+#     print("insert a coin")
+#     a = float(input("How many quarters?: "))
+#     b = float(input("How many dime?: "))
+#     c = float(input("How many nickles?: "))
+#     d = float(input("How many pennies?:"))
+#     coin = a * 0.25 + b * 0.10 + c * 0.05 + d * 0.01
+#     return round(coin, 2)
+#
+#
+# def checking(button):
+#     for item in resources:
+#         if resources[item] < MENU[button]["ingredients"][item]:
+#             print(f"Sorry don't have enough {item}")
+#             return False
+#         else:
+#             return True
+#
+# def lost(button):
+#     for item in resources:
+#         resources[item] -= MENU[button]['ingredients'][item]
+#
+#
+# def game():
+#     print(logo)
+#     is_game = True
+#     while is_game:
+#         button = input("What would you like to do? (espresso/latte/cappuccino): ")
+#         if button == "report":
+#             report()
+#         elif button == "off":
+#             is_game = False
+#         elif button == 'espresso' or button == 'latte' or button == 'cappuccino':
+#             check = checking(button)
+#             if check:
+#                 money = insert_money()
+#                 if money >= MENU[button]['cost']:
+#                     lost(button)
+#                     change = round(money - MENU[button]["cost"], 2)
+#                     print(f"Here is your change: {change}")
+#                     print(f"Here is your {button}. Enjoy it.")
+#                     profit['prof'] += (money - change)
+#                 elif money < MENU[button]['cost']:
+#                     print(f"Sorry, you don't give me enough money, because you gave me ${money}, and a {button} is ${MENU[button]['cost']}")
+#         else:
+#             print("You puss a wrong button")
+#
+#
+# game()
 
 
 #4. Coffee machine origin version
@@ -320,3 +320,66 @@ game()
 #     print(a)
 # what()
 # print(a)
+#6. Last version coffee machine.
+from art import logo
+from list import MENU, resources, profit
+
+
+def report():
+    print(f"Water: {resources['water']}")
+    print(f"Milk: {resources['milk']}")
+    print(f"Coffee: {resources['coffee']}")
+    print(f"Profit: ${profit['prof']}")
+
+
+def insert_money():
+    print("insert a coin")
+    a = float(input("How many quarters?: "))
+    b = float(input("How many dime?: "))
+    c = float(input("How many nickles?: "))
+    d = float(input("How many pennies?:"))
+    coin = a * 0.25 + b * 0.10 + c * 0.05 + d * 0.01
+    return round(coin, 2)
+
+
+def checking(button):
+    for item in resources:
+        if resources[item] < MENU[button]["ingredients"][item]:
+            print(f"Sorry don't have enough {item}")
+            return False
+        else:
+            return True
+
+def lost(button):
+    for item in resources:
+        resources[item] -= MENU[button]['ingredients'][item]
+
+
+def game():
+    print(logo)
+    print(f"espresso is: ${MENU['espresso']['cost']}, latte is: ${MENU['latte']['cost']}, "
+          f"cappuccino is: ${MENU['cappuccino']['cost']}")
+    is_game = True
+    while is_game:
+        button = input("What would you like to do? (espresso/latte/cappuccino): ")
+        if button == "report":
+            report()
+        elif button == "off":
+            is_game = False
+        elif button == 'espresso' or button == 'latte' or button == 'cappuccino':
+            check = checking(button)
+            if check:
+                money = insert_money()
+                if money >= MENU[button]['cost']:
+                    lost(button)
+                    change = round(money - MENU[button]["cost"], 2)
+                    print(f"Here is your change: {change}")
+                    print(f"Here is your {button}. Enjoy it.")
+                    profit['prof'] += (money - change)
+                elif money < MENU[button]['cost']:
+                    print(f"Sorry, you don't give me enough money, because you gave me ${money}, and a {button} is ${MENU[button]['cost']}")
+        else:
+            print("You puss a wrong button")
+
+
+game()

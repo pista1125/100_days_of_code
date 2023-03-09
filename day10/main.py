@@ -72,48 +72,48 @@
 # print(format_name(name, name_2))
 
 #5. Calculator my version
-# from symbol import symbol
-# from symbol import calculator_symbol
-# def calculator(first_number, operation, next_number):
-#     if operation == "+":
-#         a = first_number + next_number
-#         print(f"{first_number} + {next_number} = {a}")
-#         return a
-#     elif operation == "-":
-#         a = first_number - next_number
-#         print(f"{first_number} - {next_number} = {a}")
-#         return a
-#     elif operation == "*":
-#         a = first_number * next_number
-#         print(f"{first_number} * {next_number} = {a}")
-#         return a
-#     elif operation == "/":
-#         a = first_number / next_number
-#         print(f"{first_number} / {next_number} = {a}")
-#         return a
-#
-# print(calculator_symbol)
-# first_number = float(input("What's the first number?: "))
-# print(symbol)
-# game = "yes"
-# while game == "yes":
-#     operation = input("Pick an operation: ")
-#     next_number = float(input("What's the next number: "))
-#     b = calculator(first_number, operation, next_number)
-#     game = input(f"Do you want continue calculator with {b}?\n Type 'yes' or 'no'")
-#     if game == "yes":
-#         operation = input("Pick an operation: ")
-#         next_number = float(input("What's the next number: "))
-#         calculator(b, operation, next_number)
-#         game = input(f"Do you want continue calculator with {b}?\n Type 'yes' or 'no'")
-#     elif game == "no":
-#         first_number = float(input("What's the first number?: "))
-#         operation = input("Pick an operation: ")
-#         next_number = float(input("What's the next number: "))
-#         c = calculator(first_number, operation, next_number)
-#         game = input(f"Do you want continue calculator with {c}?\n Type 'yes' or 'no'")
-#     else:
-#         game = "no"
+from symbol import symbol
+from symbol import calculator_symbol
+def calculator(first_number, operation, next_number):
+    if operation == "+":
+        a = first_number + next_number
+        print(f"{first_number} + {next_number} = {a}")
+        return a
+    elif operation == "-":
+        a = first_number - next_number
+        print(f"{first_number} - {next_number} = {a}")
+        return a
+    elif operation == "*":
+        a = first_number * next_number
+        print(f"{first_number} * {next_number} = {a}")
+        return a
+    elif operation == "/":
+        a = first_number / next_number
+        print(f"{first_number} / {next_number} = {a}")
+        return a
+
+print(calculator_symbol)
+first_number = float(input("What's the first number?: "))
+print(symbol)
+game = "yes"
+while game == "yes":
+    operation = input("Pick an operation: ")
+    next_number = float(input("What's the next number: "))
+    b = calculator(first_number, operation, next_number)
+    game = input(f"Do you want continue calculator with {b}?\n Type 'yes' or 'no'")
+    if game == "yes":
+        operation = input("Pick an operation: ")
+        next_number = float(input("What's the next number: "))
+        calculator(b, operation, next_number)
+        game = input(f"Do you want continue calculator with {b}?\n Type 'yes' or 'no'")
+    elif game == "no":
+        first_number = float(input("What's the first number?: "))
+        operation = input("Pick an operation: ")
+        next_number = float(input("What's the next number: "))
+        c = calculator(first_number, operation, next_number)
+        game = input(f"Do you want continue calculator with {c}?\n Type 'yes' or 'no'")
+    else:
+        game = "no"
 
 #6. Calculator Origin
 # def add(n1, n2):

@@ -1,18 +1,17 @@
-from list import data
-import random
-print(len(data))
-def pick():
-    pick_1 = random.choice(data)
-    data.remove(pick_1)
-    print(len(data))
-pick()
-print(len(data))
+
+from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
+
+question_bank = []
+for question in question_data:
+    question_text = question["text"]
+    question_answer = question["answer"]
+    new_question = Question(q_text=question_text, q_attributes= question_answer)
+    question_bank.append(new_question)
 
 
-list = ["Ajefe", "ere"]
-print(list)
-def thinking():
-    list.replace("ere")
-    print(list)
-thinking()
-print(list)
+quiz = QuizBrain(question_bank)
+
+while quiz.still_has_question():
+    quiz.next_question()

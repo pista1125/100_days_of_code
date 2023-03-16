@@ -1,22 +1,22 @@
 #1. turtle, screen
 #
-# from turtle import Turtle, Screen
-#
-# timmy = Turtle()
+from turtle import Turtle, Screen
+
+timmy = Turtle()
 # timmy_2 = Turtle()
-# print(timmy)
-# timmy.shape("turtle")
-# timmy.color("blue")
-# for n in range(5):
-#     timmy.forward(100)
-#     timmy.right(144)
+print(timmy)
+timmy.shape("turtle")
+timmy.color("blue")
+for n in range(50):
+    timmy.forward(100)
+    timmy.right(128)
 # timmy_2.shape("turtle")
 # timmy_2.left(90)
 # timmy_2.forward(100)
-# my_screen = Screen()
-# print(my_screen.canvheight)
-#
-# my_screen.exitonclick()
+my_screen = Screen()
+print(my_screen.canvheight)
+
+my_screen.exitonclick()
 
 
 #2. Table from another package
@@ -99,49 +99,49 @@ from list import data
 from list import vs, logo
 import random
 import pyautogui
-def clear():
-    pyautogui.hotkey("ctrl", "l")
-def pick():
-    return random.choice(data)
-
-
-def check(pick_1, pick_2, choice):
-    if choice == "a":
-        if pick_1["follower_count"] > pick_2["follower_count"]:
-            return True
-        else:
-            return False
-    elif choice == "b":
-        if pick_1["follower_count"] < pick_2["follower_count"]:
-            return True
-        else:
-            return False
-
-
-def game1():
-    pick_2 = pick()
-    should_cont = True
-    score = 0
-    while should_cont:
-        print(logo)
-        pick_1 = pick_2
-        pick_2 = pick()
-        while pick_1 == pick_2:
-            pick_2 = pick()
-        print(f"{pick_1['name']} {pick_1['description']} {pick_1['country']}")
-        print(vs)
-        print(f"{pick_2['name']} {pick_2['description']} {pick_2['country']}")
-        choice = input("Who has more followers? 'A' or 'B' ").lower()
-        checking = check(pick_1, pick_2, choice)
-        clear()
-        if checking == True:
-            score += 1
-            print(f"You're right! Current score: {score}.")
-        elif checking == False:
-            should_cont = False
-            print(f"Sorry, that's wrong. Final score: {score}")
-        else:
-            print("You are stupid.")
-            should_cont = False
-
-game1()
+# def clear():
+#     pyautogui.hotkey("ctrl", "l")
+# def pick():
+#     return random.choice(data)
+#
+#
+# def check(pick_1, pick_2, choice):
+#     if choice == "a":
+#         if pick_1["follower_count"] > pick_2["follower_count"]:
+#             return True
+#         else:
+#             return False
+#     elif choice == "b":
+#         if pick_1["follower_count"] < pick_2["follower_count"]:
+#             return True
+#         else:
+#             return False
+#
+#
+# def game1():
+#     pick_2 = pick()
+#     should_cont = True
+#     score = 0
+#     while should_cont:
+#         print(logo)
+#         pick_1 = pick_2
+#         pick_2 = pick()
+#         while pick_1 == pick_2:
+#             pick_2 = pick()
+#         print(f"{pick_1['name']} {pick_1['description']} {pick_1['country']}")
+#         print(vs)
+#         print(f"{pick_2['name']} {pick_2['description']} {pick_2['country']}")
+#         choice = input("Who has more followers? 'A' or 'B' ").lower()
+#         checking = check(pick_1, pick_2, choice)
+#         clear()
+#         if checking == True:
+#             score += 1
+#             print(f"You're right! Current score: {score}.")
+#         elif checking == False:
+#             should_cont = False
+#             print(f"Sorry, that's wrong. Final score: {score}")
+#         else:
+#             print("You are stupid.")
+#             should_cont = False
+#
+# game1()

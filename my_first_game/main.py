@@ -42,7 +42,7 @@ def main():
     stars = []
     hit = False
     while run:
-        star_count += clock.tick(60)
+        star_count += clock.tick(120)
         elapsed_time = time.time() - start_time
 
         if star_count > star_add_increment:

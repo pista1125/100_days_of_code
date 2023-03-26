@@ -1,39 +1,41 @@
 #1. Turtle moodle with game
-# import turtle
-#
-# timmy = turtle.Turtle()
-# timmy.shape("turtle")
-#
-# def forward():
-#     timmy.forward(10)
-#
-#
-# def backward():
-#     timmy.backward(10)
-#
-#
-# def turn_left():
-#     timmy.left(10)
-#
-#
-# def turn_right():
-#     timmy.right(10)
-#
-#
-# def clear():
-#     timmy.clear()
-#     timmy.penup()
-#     timmy.home()
-#     timmy.pendown()
-#
-# my_srceen = turtle.Screen()
-# my_srceen.listen()
-# my_srceen.onkey(fun=forward, key="Up")
-# my_srceen.onkey(fun=backward, key="Down")
-# my_srceen.onkey(fun=turn_left, key="Left")
-# my_srceen.onkey(fun=turn_right, key="Right")
-# my_srceen.onkey(fun=clear, key="c")
-# my_srceen.exitonclick()
+import turtle
+
+timmy = turtle.Turtle()
+timmy.shape("turtle")
+
+def forward():
+    timmy.forward(10)
+
+
+def backward():
+    timmy.backward(10)
+
+
+def turn_left():
+    timmy.left(10)
+
+
+def turn_right():
+    timmy.right(10)
+
+
+def clear():
+    timmy.clear()
+    timmy.penup()
+    timmy.home()
+    timmy.pendown()
+timmy.penup()
+timmy.goto(-250, 0)
+timmy.pendown()
+my_srceen = turtle.Screen()
+my_srceen.listen()
+my_srceen.onkey(fun=forward, key="Up")
+my_srceen.onkey(fun=backward, key="Down")
+my_srceen.onkey(fun=turn_left, key="Left")
+my_srceen.onkey(fun=turn_right, key="Right")
+my_srceen.onkey(fun=clear, key="c")
+my_srceen.exitonclick()
 
 #2. Turtle moodle with turtle race
 # import turtle
@@ -81,34 +83,34 @@
 
 #3. Turtle moodle with turtle race origin version
 
-from turtle import Turtle, Screen
-import random
-
-my_sreen = Screen()
-guess = my_sreen.textinput(title="Guess the winner", prompt="Who will win?")
-
-color = ["red", "blue", "green", "yellow", "orange"]
-y_position = [-200, -100, 0, 100, 200]
-all_turtle = []
-
-for timmy_index in range(0, 5):
-    timmy = Turtle(shape="turtle")
-    timmy.color(color[timmy_index])
-    timmy.penup()
-    timmy.goto(x=-200, y=y_position[timmy_index])
-    all_turtle.append(timmy)
-
-game_on = True
-while game_on:
-    for turtle in all_turtle:
-        if turtle.xcor() > 290:
-            game_on = False
-            winning = turtle.pencolor()
-            if winning == guess:
-                print(f"You have won! The {winning} turtle is the winner!")
-            else:
-                print(f"You have lost! The {winning} turtle is the winner!")
-        rand_distance = random.randint(-2, 10)
-        turtle.forward(rand_distance)
-
-my_sreen.exitonclick()
+# from turtle import Turtle, Screen
+# import random
+#
+# my_sreen = Screen()
+# guess = my_sreen.textinput(title="Guess the winner", prompt="Who will win?")
+#
+# color = ["red", "blue", "green", "yellow", "orange"]
+# y_position = [-200, -100, 0, 100, 200]
+# all_turtle = []
+#
+# for timmy_index in range(0, 5):
+#     timmy = Turtle(shape="turtle")
+#     timmy.color(color[timmy_index])
+#     timmy.penup()
+#     timmy.goto(x=-200, y=y_position[timmy_index])
+#     all_turtle.append(timmy)
+#
+# game_on = True
+# while game_on:
+#     for turtle in all_turtle:
+#         if turtle.xcor() > 290:
+#             game_on = False
+#             winning = turtle.pencolor()
+#             if winning == guess:
+#                 print(f"You have won! The {winning} turtle is the winner!")
+#             else:
+#                 print(f"You have lost! The {winning} turtle is the winner!")
+#         rand_distance = random.randint(-2, 10)
+#         turtle.forward(rand_distance)
+#
+# my_sreen.exitonclick()

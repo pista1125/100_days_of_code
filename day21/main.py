@@ -20,7 +20,7 @@ my_screen.tracer(0)
 #     a = 0.3
 
 snake = Snake()
-#helo
+#helo ebllo
 
 my_screen.listen()
 my_screen.onkey(snake.left, "Left")

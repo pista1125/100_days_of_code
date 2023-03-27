@@ -78,6 +78,7 @@ while game_on:
         food.create_object()
         snake.plus_snake()
         score.score_add()
+        print("hello")
 
 
 

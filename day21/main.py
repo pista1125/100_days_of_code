@@ -10,6 +10,7 @@ my_screen.setup(width=560, height=560)
 my_screen.bgcolor("black")
 my_screen.title("My snake game")
 my_screen.tracer(0)
+#hello
 
 # b = my_screen.textinput("level", "choice")
 # if b == "hard":

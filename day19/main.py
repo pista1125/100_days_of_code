@@ -1,41 +1,41 @@
 #1. Turtle moodle with game
-import turtle
-
-timmy = turtle.Turtle()
-timmy.shape("turtle")
-
-def forward():
-    timmy.forward(10)
-
-
-def backward():
-    timmy.backward(10)
-
-
-def turn_left():
-    timmy.left(10)
-
-
-def turn_right():
-    timmy.right(10)
-
-
-def clear():
-    timmy.clear()
-    timmy.penup()
-    timmy.home()
-    timmy.pendown()
-timmy.penup()
-timmy.goto(-250, 0)
-timmy.pendown()
-my_srceen = turtle.Screen()
-my_srceen.listen()
-my_srceen.onkey(fun=forward, key="Up")
-my_srceen.onkey(fun=backward, key="Down")
-my_srceen.onkey(fun=turn_left, key="Left")
-my_srceen.onkey(fun=turn_right, key="Right")
-my_srceen.onkey(fun=clear, key="c")
-my_srceen.exitonclick()
+# import turtle
+#
+# timmy = turtle.Turtle()
+# timmy.shape("turtle")
+#
+# def forward():
+#     timmy.forward(10)
+#
+#
+# def backward():
+#     timmy.backward(10)
+#
+#
+# def turn_left():
+#     timmy.left(10)
+#
+#
+# def turn_right():
+#     timmy.right(10)
+#
+#
+# def clear():
+#     timmy.clear()
+#     timmy.penup()
+#     timmy.home()
+#     timmy.pendown()
+# timmy.penup()
+# timmy.goto(-250, 0)
+# timmy.pendown()
+# my_srceen = turtle.Screen()
+# my_srceen.listen()
+# my_srceen.onkey(fun=forward, key="Up")
+# my_srceen.onkey(fun=backward, key="Down")
+# my_srceen.onkey(fun=turn_left, key="Left")
+# my_srceen.onkey(fun=turn_right, key="Right")
+# my_srceen.onkey(fun=clear, key="c")
+# my_srceen.exitonclick()
 
 #2. Turtle moodle with turtle race
 # import turtle
@@ -114,3 +114,21 @@ my_srceen.exitonclick()
 #         turtle.forward(rand_distance)
 #
 # my_sreen.exitonclick()
+
+#4. flower with turtle
+
+# from turtle import Turtle, Screen
+#
+# timmy = Turtle(shape="turtle")
+# timmy.speed("fastest")
+# for x in range(6):
+#     timmy.circle(100)
+#     timmy.right(60)
+# timmy.penup()
+# timmy.forward(100)
+# timmy.left(90)
+# timmy.pendown()
+# timmy.circle(100)
+#
+# my_screen = Screen()
+# my_screen.exitonclick()

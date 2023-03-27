@@ -11,6 +11,7 @@ class Snake:
     def __init__(self):
         self.timmy_snake = []
         self.create_snake()
+        self.timmy_head = self.timmy_snake[0]
 
     def create_snake(self):
         for new_segment in STARTING_POSITION:
@@ -26,6 +27,13 @@ class Snake:
             new_y = self.timmy_snake[item - 1].ycor()
             self.timmy_snake[item].goto(new_x, new_y)
         self.timmy_snake[0].forward(MOVE_DISTANCE)
+
+    def plus_snake(self):
+        timmy = Turtle(shape="square")
+        timmy.color("white")
+        timmy.penup()
+        timmy.goto(self.timmy_snake[len(self.timmy_snake) - 1].xcor(), self.timmy_snake[len(self.timmy_snake) - 1].ycor())
+        self.timmy_snake.append(timmy)
 
     def left(self):
         if self.timmy_snake[0].heading() == UP or self.timmy_snake[0].heading() == DOWN:

@@ -15,7 +15,7 @@ class Game_input:
         self.y_speed_position = -100
         self.choice_dif_level = ["hard", "normal", "easy"]
         #This code about a bounce wall
-        self.bounce = ["Bounce wall", "not bounce wall"]
+        self.bounce = ["Not bounce wall", "Bounce wall"]
         self.bounce_wall = 0
         self.timmy_wall = []
 

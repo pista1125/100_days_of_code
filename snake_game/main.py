@@ -58,47 +58,31 @@ my_screen.onkey(snake.down, "Down")
 game_on = True
 while game_on:
     my_screen.update()
-    time.sleep(0.1)
+    time.sleep(game.speed)
     snake.move()
+    #food the snake
     if snake.timmy_head.distance(food) < 10:
         food.create_object()
         snake.plus_snake()
         score.score_add()
-
-    if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280 or snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
-        score.game_over()
-        game_on = False
-
+    #bounce with wall
+    if game.bounce_wall == 1:
+        if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280 or snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+            score.game_over()
+            game_on = False
+    elif game.bounce_wall == 2:
+        if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280:
+            snake.wall_bounce_x()
+        elif snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+            snake.wall_bounce_y()
+    #collision with own tail
     for timmy in snake.timmy_snake[1:]:
         if snake.timmy_head.distance(timmy) < 10:
             score.game_over()
             game_on = False
 
 
-
 my_screen.mainloop()
-
-
-#try
-
-# from turtle import Turtle, Screen
-#
-# def go(x, y):
-#     if x > 0:
-#         timmy.goto(100, 0)
-#     if x < 0:
-#         timmy.goto(-100, 0)
-#     print(x, y)
-#
-#
-# timmy = Turtle()
-# my_screen = Screen()
-#
-# a = my_screen.onclick(go, btn=1)
-#
-# print(a)
-#
-# my_screen.mainloop()
 
 
 

@@ -34,6 +34,16 @@ class Snake:
     def plus_snake(self):
         self.add_segment(self.timmy_snake[-1].position())
 
+    def wall_bounce_x(self):
+        x = self.timmy_head.xcor()
+        y = self.timmy_head.ycor()
+        self.timmy_head.goto(-x, y)
+
+    def wall_bounce_y(self):
+        x = self.timmy_head.xcor()
+        y = self.timmy_head.ycor()
+        self.timmy_head.goto(x, -y)
+
     def left(self):
         if self.timmy_snake[0].heading() == UP or self.timmy_snake[0].heading() == DOWN:
             self.timmy_snake[0].setheading(LEFT)

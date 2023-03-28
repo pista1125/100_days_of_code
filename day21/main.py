@@ -24,7 +24,17 @@
 # nemo.breathe()
 # print(nemo.num_eyes)
 
+#2. Working with slice
 
+# piano_keys = ['a', "b", "c", "d", "e", "f", "g"]
+# piano_tuple = ('a', "b", "c", "d", "e", "f", "g")
+#
+# print(piano_keys[2:5])
+# print(piano_keys[2:])
+# print(piano_keys[:5])
+# print(piano_keys[2:5:2])
+# print(piano_keys[::2])
+# print(piano_keys[::-1])
 
 
 
@@ -78,8 +88,15 @@ while game_on:
         food.create_object()
         snake.plus_snake()
         score.score_add()
-        print("hello bello")
 
+    if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280 or snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+        score.game_over()
+        game_on = False
+
+    for timmy in snake.timmy_snake[1:]:
+        if snake.timmy_head.distance(timmy) < 10:
+            score.game_over()
+            game_on = False
 
 
 

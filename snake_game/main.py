@@ -1,4 +1,39 @@
 #Snake game
+def robot():
+    if snake.c % 3 == 0:
+        snake.robot_pilot_move()
+    for x in range(26):
+        if snake.timmy_head.distance(food) < 10:
+            food.create_object()
+            snake.plus_snake()
+            score.score_add()
+        snake.move()
+        my_screen.update()
+        time.sleep(0.02)
+    snake.timmy_head.right(90)
+    if snake.timmy_head.distance(food) < 10:
+        food.create_object()
+        snake.plus_snake()
+        score.score_add()
+    snake.move()
+    my_screen.update()
+    snake.timmy_head.right(90)
+    for x in range(26):
+        if snake.timmy_head.distance(food) < 10:
+            food.create_object()
+            snake.plus_snake()
+            score.score_add()
+        snake.move()
+        my_screen.update()
+        time.sleep(0.02)
+    snake.timmy_head.left(90)
+    if snake.timmy_head.distance(food) < 10:
+        food.create_object()
+        snake.plus_snake()
+        score.score_add()
+    snake.move()
+    my_screen.update()
+    snake.timmy_head.left(90)
 
 from turtle import Screen
 import time
@@ -17,8 +52,9 @@ my_screen.tracer(0)
 
 
 game = Game_input()
-
 game.player()
+
+
 while game.player_number == 0:
     my_screen.onclick(game.choice_number, btn=1)
     my_screen.update()
@@ -45,25 +81,63 @@ for x in range(3):
     game_start.clear()
 
 snake = Snake()
+snake.create_snake()
+
+snake_2 = Snake()
+snake_2.position()
+if game.player_number == 2:
+    snake_2.create_snake()
+
 food = Food()
+food.create_object()
 score = Score()
 
 my_screen.listen()
-
 my_screen.onkey(snake.left, "Left")
 my_screen.onkey(snake.right, "Right")
 my_screen.onkey(snake.up, "Up")
 my_screen.onkey(snake.down, "Down")
+my_screen.onkey(snake.remove_tails, "r")
+my_screen.onkey(snake.pause, "space")
+my_screen.onkey(snake.robot_pilot, "p")
+
+
+
+my_screen.onkey(snake_2.left, "a")
+my_screen.onkey(snake_2.right, "d")
+my_screen.onkey(snake_2.up, "w")
+my_screen.onkey(snake_2.down, "s")
+my_screen.onkey(snake_2.remove_tails, "1")
+my_screen.onkey(snake_2.pause, "0")
+
 
 game_on = True
 while game_on:
     my_screen.update()
     time.sleep(game.speed)
-    snake.move()
+    #Pause function both two snake
+    if snake.pause_button % 2 == 0 or snake_2.pause_button % 2 == 0:
+        while snake.pause_button % 2 == 0 or snake_2.pause_button % 2 == 0:
+            time.sleep(1)
+            my_screen.update()
+
+    if game.player_number == 1:
+        if snake.robot_button % 2 == 0:
+            snake.move()
+        elif snake.robot_button % 2 != 0:
+            robot()
+    elif game.player_number == 2:
+        snake.move()
+        snake_2.move()
+
     #food the snake
     if snake.timmy_head.distance(food) < 10:
         food.create_object()
         snake.plus_snake()
+        score.score_add()
+    elif game.player_number == 2 and snake_2.timmy_head.distance(food) < 10:
+        food.create_object()
+        snake_2.plus_snake()
         score.score_add()
     #bounce with wall
     if game.bounce_wall == 1:

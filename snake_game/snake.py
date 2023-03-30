@@ -1,5 +1,5 @@
-from turtle import Turtle, Screen
-from food import Food
+from turtle import Turtle
+from game_input import Game_input
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
@@ -10,10 +10,12 @@ class Snake:
         self.starting_position = [(0, 0), (-20, 0), (-40, 0)]
         self.timmy_snake = []
         self.timmy_head = None
-        self.color = "white"
+        self.coloring = "blue"
         self.pause_button = 1
         self.robot_button = 0
         self.c = -1
+        self.color_option = ["white", "red", "blue", "green", "yellow", "orange"]
+        self.color_number = 0
 
     def create_snake(self):
         for new_segment in self.starting_position:
@@ -22,7 +24,7 @@ class Snake:
 
     def add_segment(self, position):
         timmy = Turtle(shape="square")
-        timmy.color(self.color)
+        timmy.color(self.coloring)
         timmy.penup()
         timmy.goto(position)
         self.timmy_snake.append(timmy)
@@ -31,6 +33,8 @@ class Snake:
         for item in range(len(self.timmy_snake) - 1, 0, -1):
             new_x = self.timmy_snake[item - 1].xcor()
             new_y = self.timmy_snake[item - 1].ycor()
+            new_head = self.timmy_snake[item - 1].heading()
+            self.timmy_snake[item].setheading(new_head)
             self.timmy_snake[item].goto(new_x, new_y)
         self.timmy_snake[0].forward(MOVE_DISTANCE)
 
@@ -49,7 +53,12 @@ class Snake:
 
     def position(self):
         self.starting_position = [(0, -40), (-20, -40), (-40, -40)]
-        self.color = "green"
+        self.coloring = "green"
+
+    # def change_snake_color(self):
+    #     color_snake = Game_input()
+    #     color_option = ["white", "red", "blue", "green", "yellow", "orange"]
+    #     self.coloring = color_snake.color_choice
 
     def left(self):
         if self.timmy_snake[0].heading() == UP or self.timmy_snake[0].heading() == DOWN:
@@ -85,3 +94,13 @@ class Snake:
         self.timmy_head.setheading(90)
         self.c += 1
 
+    def mirror(self):
+        head = self.timmy_snake[len(self.timmy_snake) - 1].heading()
+        self.timmy_head.goto(self.timmy_snake[len(self.timmy_snake) -1].xcor(), self.timmy_snake[len(self.timmy_snake) -1].ycor())
+        self.timmy_head.setheading(head + 180)
+
+    def color(self):
+        for item in self.timmy_snake:
+            item.color(self.color_option[self.color_number % 6])
+        self.coloring = self.color_option[self.color_number % 6]
+        self.color_number += 1

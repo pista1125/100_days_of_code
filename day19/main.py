@@ -82,7 +82,7 @@
 
 
 #3. Turtle moodle with turtle race origin version
-
+#
 # from turtle import Turtle, Screen
 # import random
 #
@@ -120,7 +120,7 @@
 # from turtle import Turtle, Screen
 #
 # timmy = Turtle(shape="turtle")
-# timmy.speed("fastest")
+# timmy.speed("normal")
 # for x in range(6):
 #     timmy.circle(100)
 #     timmy.right(60)
@@ -129,6 +129,6 @@
 # timmy.left(90)
 # timmy.pendown()
 # timmy.circle(100)
-#
-# my_screen = Screen()
-# my_screen.exitonclick()
+
+my_screen = Screen()
+my_screen.exitonclick()

@@ -18,7 +18,13 @@ class Game_input:
         self.bounce = ["Not bounce wall", "Bounce wall"]
         self.bounce_wall = 0
         self.timmy_wall = []
-
+        #this code about a snake color setting
+        self.x_color_position = [-100, -50, 0, 50, 100, 150]
+        self.y_color_position = 30
+        self.color_option = ["white", "red", "blue", "green", "yellow", "orange"]
+        self.timmy_color = []
+        self.color_choice = "blue"
+        self.color = 0
 
     def player(self):
         for x in range(2):
@@ -59,11 +65,15 @@ class Game_input:
             for timmy in self.timmy_player:
                 timmy.clear()
             self.menu += 1
+        # elif self.menu == 1:
+        #     for timmy in self.timmy_color:
+        #         timmy.clear()
+        #     self.menu += 1
         elif self.menu == 1:
             for timmy in self.timmy_speed:
                 timmy.clear()
-            self.menu += 1
-        elif self.menu == 2:
+            self.menu += 2
+        elif self.menu == 3:
             for timmy in self.timmy_wall:
                 timmy.clear()
 
@@ -81,6 +91,37 @@ class Game_input:
     def choice_bounce(self, x, y):
         if y > 20:
             self.bounce_wall = 1
-        elif y < -20:
+        elif y < -10:
             self.bounce_wall = 2
+
+    # def color_setting(self):
+    #     for x in range(6):
+    #         timmy = Turtle()
+    #         timmy.color("white")
+    #         timmy.hideturtle()
+    #         timmy.penup()
+    #         timmy.goto(self.x_color_position[x], self.y_color_position)
+    #         timmy.write(f"{self.color_option[x]}", False, "center", ("Arial", 12, "normal"))
+    #         self.timmy_color.append(timmy)
+
+    # def choice_color(self, x, y):
+    #     if y > 20 and -125 < x < -75:
+    #         self.color_choice = "red"
+    #         print(self.color_choice)
+    #         self.color = 1
+    #     elif y > 20 and -75 < x < -25:
+    #         self.color_choice = "blue"
+    #         self.color = 1
+    #     elif y > 20 and -25 < x < 25:
+    #         self.color_choice = self.color_option[2]
+    #         self.color = 1
+    #     elif y > 20 and 25 < x < 75:
+    #         self.color_choice = self.color_option[3]
+    #         self.color = 1
+    #     elif y > 20 and 75 < x < 125:
+    #         self.color_choice = self.color_option[4]
+    #         self.color = 1
+    #     elif y > 20 and 125 < x < 175:
+    #         self.color_choice = self.color_option[5]
+    #         self.color = 1
 

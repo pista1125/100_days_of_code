@@ -166,25 +166,43 @@ game.player()
 while game.player_number == 0:
     my_screen.onclick(game.choice_number, btn=1)
     my_screen.update()
-game.all_timmy_clear()
+game.timmy_clear_player()
+
+if game.player_number == 2:
+    game.team_or_not()
+    while game.team_mode_choice == 0:
+        my_screen.onclick(game.team_choice, btn=1)
+        my_screen.update()
+    game.timmy_clear_team()
+
+
 
 game.color_setting()
 while game.color == 0:
     my_screen.onclick(game.choice_color, btn=1)
     my_screen.update()
-game.all_timmy_clear()
+game.timmy_clear_color()
+
+
+if game.player_number == 2:
+    game.color_setting_2()
+    while game.color_2 == 0:
+        my_screen.onclick(game.choice_color_2, btn=1)
+        my_screen.update()
+    game.timmy_clear_color_2()
+
 
 game.speed_turtle()
 while game.speed == 0:
     my_screen.onclick(game.choice_speed, btn=1)
     my_screen.update()
-game.all_timmy_clear()
+game.timmy_clear_speed()
 
 game.wall_turtle()
 while game.bounce_wall == 0:
     my_screen.onclick(game.choice_bounce, btn=1)
     my_screen.update()
-game.all_timmy_clear()
+game.timmy_clear_wall()
 
 
 game_start = GameStart()
@@ -199,7 +217,7 @@ snake.color_setting(game.color_choice)
 snake.create_snake()
 
 snake_2 = Snake()
-snake_2.position()
+snake_2.position_color_setting(game.color_choice_2)
 if game.player_number == 2:
     snake_2.create_snake()
 
@@ -218,6 +236,7 @@ my_screen.onkey(snake.robot_pilot, "p")
 my_screen.onkey(snake.robot_pilot_2, "l")
 my_screen.onkey(snake.mirror, "m")
 my_screen.onkey(snake.color, "c")
+my_screen.onkey(food.change_color_button, "f")
 
 my_screen.onkey(snake_2.left, "a")
 my_screen.onkey(snake_2.right, "d")

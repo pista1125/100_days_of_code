@@ -1,5 +1,4 @@
 from turtle import Turtle
-from game_input import Game_input
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
@@ -17,6 +16,9 @@ class Snake:
         self.c = -1
         self.color_option = ["white", "red", "blue", "green", "yellow", "orange"]
         self.color_number = 0
+        self.a = None
+        self.b = None
+
 
     def create_snake(self):
         for new_segment in self.starting_position:
@@ -61,14 +63,10 @@ class Snake:
         y = self.timmy_head.ycor()
         self.timmy_head.goto(x, -y + self.b)
 
-    def position(self):
+    def position_color_setting(self, color):
         self.starting_position = [(0, -40), (-20, -40), (-40, -40)]
-        self.coloring = "green"
+        self.coloring = color
 
-    # def change_snake_color(self):
-    #     color_snake = Game_input()
-    #     color_option = ["white", "red", "blue", "green", "yellow", "orange"]
-    #     self.coloring = color_snake.color_choice
 
     def left(self):
         if self.timmy_snake[0].heading() == UP or self.timmy_snake[0].heading() == DOWN:

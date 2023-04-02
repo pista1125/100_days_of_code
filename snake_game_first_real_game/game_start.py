@@ -28,7 +28,7 @@ class GameStart(Turtle):
         self.time -= 1
 
     def Start_2(self):
-        self.write(f"         Game will be start at: {self.time}\n {self.button_2} ", False, "center", ("Arial", 12, "normal"))
+        self.write(f"                Game will be start at: {self.time}\n {self.button_2} ", False, "center", ("Arial", 12, "normal"))
         self.time -= 1
 
 

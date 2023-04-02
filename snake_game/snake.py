@@ -13,6 +13,7 @@ class Snake:
         self.coloring = "blue"
         self.pause_button = 1
         self.robot_button = 0
+        self.robot_button_2 = 0
         self.c = -1
         self.color_option = ["white", "red", "blue", "green", "yellow", "orange"]
         self.color_number = 0
@@ -27,6 +28,7 @@ class Snake:
         timmy.color(self.coloring)
         timmy.penup()
         timmy.goto(position)
+        timmy.setheading(RIGHT)
         self.timmy_snake.append(timmy)
 
     def move(self):
@@ -42,14 +44,22 @@ class Snake:
         self.add_segment(self.timmy_snake[-1].position())
 
     def wall_bounce_x(self):
+        if self.timmy_head.xcor() > 270:
+            self.a = +20
+        elif self.timmy_head.xcor() < -270:
+            self.a = -20
         x = self.timmy_head.xcor()
         y = self.timmy_head.ycor()
-        self.timmy_head.goto(-x, y)
+        self.timmy_head.goto(-x + self.a, y)
 
     def wall_bounce_y(self):
+        if self.timmy_head.ycor() > 270:
+            self.b = +20
+        elif self.timmy_head.ycor() < -270:
+            self.b = -20
         x = self.timmy_head.xcor()
         y = self.timmy_head.ycor()
-        self.timmy_head.goto(x, -y)
+        self.timmy_head.goto(x, -y + self.b)
 
     def position(self):
         self.starting_position = [(0, -40), (-20, -40), (-40, -40)]
@@ -88,6 +98,9 @@ class Snake:
         self.robot_button += 1
         self.c += 1
 
+    def robot_pilot_2(self):
+        self.robot_button_2 += 1
+
     def robot_pilot_move(self):
         self.remove_tails()
         self.timmy_head.goto(-260, -260)
@@ -104,3 +117,6 @@ class Snake:
             item.color(self.color_option[self.color_number % 6])
         self.coloring = self.color_option[self.color_number % 6]
         self.color_number += 1
+
+    def color_setting(self, color):
+        self.coloring = color

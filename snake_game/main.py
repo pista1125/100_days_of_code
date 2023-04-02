@@ -148,13 +148,15 @@ from score import Score
 from game_start import GameStart
 from game_input import Game_input
 
+WIDTH = 560
+HEIGHT = 560
 eat_number = 1
 
 my_screen = Screen()
 
 my_screen.title("Snake game")
 my_screen.bgcolor("black")
-my_screen.setup(width=560, height=560)
+my_screen.setup(width=WIDTH, height=HEIGHT)
 my_screen.tracer(0)
 
 
@@ -166,11 +168,11 @@ while game.player_number == 0:
     my_screen.update()
 game.all_timmy_clear()
 
-# game.color_setting()
-# while game.color == 0:
-#     my_screen.onclick(game.choice_color, btn=1)
-#     my_screen.update()
-# game.all_timmy_clear()
+game.color_setting()
+while game.color == 0:
+    my_screen.onclick(game.choice_color, btn=1)
+    my_screen.update()
+game.all_timmy_clear()
 
 game.speed_turtle()
 while game.speed == 0:
@@ -193,6 +195,7 @@ for x in range(3):
     game_start.clear()
 
 snake = Snake()
+snake.color_setting(game.color_choice)
 snake.create_snake()
 
 snake_2 = Snake()
@@ -212,6 +215,7 @@ my_screen.onkey(snake.down, "Down")
 my_screen.onkey(snake.remove_tails, "r")
 my_screen.onkey(snake.pause, "space")
 my_screen.onkey(snake.robot_pilot, "p")
+my_screen.onkey(snake.robot_pilot_2, "l")
 my_screen.onkey(snake.mirror, "m")
 my_screen.onkey(snake.color, "c")
 
@@ -235,11 +239,13 @@ while game_on:
         while snake.pause_button % 2 == 0 or snake_2.pause_button % 2 == 0:
             time.sleep(1)
             my_screen.update()
-    #1. player robot pilot, and move
+    #1. player robot pilots, and move
     if game.player_number == 1:
-        if snake.robot_button % 2 == 0:
+        if snake.robot_button % 2 == 0 and snake.robot_button_2 % 2 == 0:
             snake.move()
         elif snake.robot_button % 2 != 0:
+            robot(snake)
+        elif snake.robot_button_2 % 2 != 0:
             robot_2()
     elif game.player_number == 2:
         snake.move()
@@ -271,32 +277,32 @@ while game_on:
     #bounce with wall
     if game.bounce_wall == 1:
         if game.player_number == 1:
-            if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280 or snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+            if abs(snake.timmy_head.xcor()) > (WIDTH/2 - 10) or abs(snake.timmy_head.ycor()) > (WIDTH/2 - 10):
                 score.game_over()
                 game_on = False
         elif game.player_number == 2:
-            if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280 or snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+            if abs(snake.timmy_head.xcor()) > (HEIGHT/2 - 10) or abs(snake.timmy_head.ycor()) > (HEIGHT/2 - 10):
                 score.game_over()
                 game_on = False
             #2. snake
-            if snake_2.timmy_head.xcor() > 280 or snake_2.timmy_head.xcor() < -280 or snake_2.timmy_head.ycor() > 280 or snake_2.timmy_head.ycor() < -280:
+            if abs(snake_2.timmy_head.xcor()) > (WIDTH/2 - 10) or abs(snake_2.timmy_head.ycor()) > (HEIGHT/2 - 10):
                 score.game_over()
                 game_on = False
     elif game.bounce_wall == 2:
         if game.player_number == 1:
-            if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280:
+            if abs(snake.timmy_head.xcor()) > (WIDTH/2 - 10):
                 snake.wall_bounce_x()
-            elif snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+            elif abs(snake.timmy_head.ycor()) > (HEIGHT/2 - 10):
                 snake.wall_bounce_y()
         elif game.player_number == 2:
-            if snake.timmy_head.xcor() > 280 or snake.timmy_head.xcor() < -280:
+            if abs(snake.timmy_head.xcor()) > (WIDTH/2 - 20):
                 snake.wall_bounce_x()
-            elif snake.timmy_head.ycor() > 280 or snake.timmy_head.ycor() < -280:
+            elif abs(snake.timmy_head.ycor()) > (HEIGHT/2 - 20):
                 snake.wall_bounce_y()
             #2. snake
-            if snake_2.timmy_head.xcor() > 280 or snake_2.timmy_head.xcor() < -280:
+            if abs(snake_2.timmy_head.xcor()) > (WIDTH / 2 - 20):
                 snake_2.wall_bounce_x()
-            elif snake_2.timmy_head.ycor() > 280 or snake_2.timmy_head.ycor() < -280:
+            elif abs(snake_2.timmy_head.ycor()) > (HEIGHT/2 - 20):
                 snake_2.wall_bounce_y()
 
     #collision with own tail

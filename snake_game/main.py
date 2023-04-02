@@ -150,7 +150,6 @@ from game_input import Game_input
 
 WIDTH = 560
 HEIGHT = 560
-eat_number = 1
 
 my_screen = Screen()
 
@@ -206,11 +205,16 @@ game.timmy_clear_wall()
 
 
 game_start = GameStart()
-
-for x in range(3):
-    game_start.Start()
-    time.sleep(1)
-    game_start.clear()
+if game.player_number == 1:
+    for x in range(3):
+        game_start.Start()
+        time.sleep(1)
+        game_start.clear()
+elif game.player_number == 2:
+    for x in range(3):
+        game_start.Start_2()
+        time.sleep(1)
+        game_start.clear()
 
 snake = Snake()
 snake.color_setting(game.color_choice)
@@ -224,6 +228,18 @@ if game.player_number == 2:
 food = Food()
 food.create_object()
 score = Score()
+score_2_player = Score()
+
+if game.player_number == 1:
+    score.update_score()
+elif game.player_number == 2:
+    if game.team_mode_choice == 1:
+        score.player_1_update()
+        score_2_player.player_2_score_position()
+        score_2_player.player_2_score_1v1()
+    elif game.team_mode_choice == 2:
+        score.player_2_score_team()
+
 
 my_screen.listen()
 my_screen.onkey(snake.left, "Left")
@@ -271,57 +287,97 @@ while game_on:
         snake_2.move()
 
     #food the snake
-    if snake.timmy_head.distance(food) < 10:
-        if eat_number % 5 != 0:
-            food.create_object()
-            snake.plus_snake()
-            score.score_add()
-            eat_number += 1
-        elif eat_number % 5 == 0:
-            food.create_object()
-            snake.plus_snake()
-            score.score_extra_add()
-            eat_number += 1
-    elif game.player_number == 2 and snake_2.timmy_head.distance(food) < 10:
-        if eat_number % 5 != 0:
-            food.create_object()
-            snake_2.plus_snake()
-            score.score_add()
-            eat_number += 1
-        elif eat_number % 5 == 0:
-            food.create_object()
-            snake_2.plus_snake()
-            score.score_extra_add()
-            eat_number += 1
+    # if player number == 1
+    if game.player_number == 1:
+        if snake.timmy_head.distance(food) < 10:
+            if score.eat_number % 5 != 0:
+                food.create_object()
+                snake.plus_snake()
+                score.score_add()
+                score.eat_number += 1
+            elif score.eat_number % 5 == 0:
+                food.create_object()
+                snake.plus_snake()
+                score.score_extra_add()
+                score.eat_number += 1
+    # if player number 2
+    elif game.player_number == 2:
+        if game.team_mode_choice == 1:
+            if snake.timmy_head.distance(food) < 10:
+                if score.eat_number % 5 != 0:
+                    food.create_object()
+                    snake.plus_snake()
+                    score.score_add_1player()
+                    score.eat_number += 1
+                elif score.eat_number % 5 == 0:
+                    food.create_object()
+                    snake.plus_snake()
+                    score.score_extra_add_1player()
+                    score.eat_number += 1
+            if snake_2.timmy_head.distance(food) < 10:
+                if score.eat_number % 5 != 0:
+                    food.create_object()
+                    score_2_player.score_add_2player()
+                    snake_2.plus_snake()
+                    score.eat_number += 1
+                elif score.eat_number % 5 == 0:
+                    food.create_object()
+                    snake_2.plus_snake()
+                    score_2_player.score_extra_add_2player()
+                    score.eat_number += 1
+        elif game.team_mode_choice == 2:
+            if snake.timmy_head.distance(food) < 10:
+                if score.eat_number % 5 != 0:
+                    food.create_object()
+                    snake.plus_snake()
+                    score.score_add_team()
+                    score.eat_number += 1
+                elif score.eat_number % 5 == 0:
+                    food.create_object()
+                    snake.plus_snake()
+                    score.score_extra_add_team()
+                    score.eat_number += 1
+            if snake_2.timmy_head.distance(food) < 10:
+                if score.eat_number % 5 != 0:
+                    food.create_object()
+                    snake_2.plus_snake()
+                    score.score_add_team()
+                    score.eat_number += 1
+                elif score.eat_number % 5 == 0:
+                    food.create_object()
+                    snake_2.plus_snake()
+                    score.score_extra_add_team()
+                    score.eat_number += 1
+
     #bounce with wall
     if game.bounce_wall == 1:
         if game.player_number == 1:
-            if abs(snake.timmy_head.xcor()) > (WIDTH/2 - 10) or abs(snake.timmy_head.ycor()) > (WIDTH/2 - 10):
+            if abs(snake.timmy_head.xcor()) > int(WIDTH/2 - 10) or abs(snake.timmy_head.ycor()) > int(WIDTH/2 - 10):
                 score.game_over()
                 game_on = False
         elif game.player_number == 2:
-            if abs(snake.timmy_head.xcor()) > (HEIGHT/2 - 10) or abs(snake.timmy_head.ycor()) > (HEIGHT/2 - 10):
+            if abs(snake.timmy_head.xcor()) > int(HEIGHT/2 - 10) or abs(snake.timmy_head.ycor()) > int(HEIGHT/2 - 10):
                 score.game_over()
                 game_on = False
             #2. snake
-            if abs(snake_2.timmy_head.xcor()) > (WIDTH/2 - 10) or abs(snake_2.timmy_head.ycor()) > (HEIGHT/2 - 10):
+            if abs(snake_2.timmy_head.xcor()) > int(WIDTH/2 - 10) or abs(snake_2.timmy_head.ycor()) > int(HEIGHT/2 - 10):
                 score.game_over()
                 game_on = False
     elif game.bounce_wall == 2:
         if game.player_number == 1:
-            if abs(snake.timmy_head.xcor()) > (WIDTH/2 - 10):
+            if abs(snake.timmy_head.xcor()) > int(WIDTH/2 - 10):
                 snake.wall_bounce_x()
-            elif abs(snake.timmy_head.ycor()) > (HEIGHT/2 - 10):
+            elif abs(snake.timmy_head.ycor()) > int(HEIGHT/2 - 10):
                 snake.wall_bounce_y()
         elif game.player_number == 2:
-            if abs(snake.timmy_head.xcor()) > (WIDTH/2 - 20):
+            if abs(snake.timmy_head.xcor()) > int(WIDTH/2 - 20):
                 snake.wall_bounce_x()
-            elif abs(snake.timmy_head.ycor()) > (HEIGHT/2 - 20):
+            elif abs(snake.timmy_head.ycor()) > int(HEIGHT/2 - 20):
                 snake.wall_bounce_y()
             #2. snake
-            if abs(snake_2.timmy_head.xcor()) > (WIDTH / 2 - 20):
+            if abs(snake_2.timmy_head.xcor()) > int(WIDTH / 2 - 20):
                 snake_2.wall_bounce_x()
-            elif abs(snake_2.timmy_head.ycor()) > (HEIGHT/2 - 20):
+            elif abs(snake_2.timmy_head.ycor()) > int(HEIGHT/2 - 20):
                 snake_2.wall_bounce_y()
 
     #collision with own tail
@@ -339,14 +395,20 @@ while game_on:
             if snake_2.timmy_head.distance(timmy) < 10:
                 score.game_over()
                 game_on = False
-        for timmy in snake.timmy_snake[1:]:
-            if snake_2.timmy_head.distance(timmy) < 10:
-                score.game_over()
-                game_on = False
-        for timmy in snake_2.timmy_snake[1:]:
-            if snake.timmy_head.distance(timmy) < 10:
-                score.game_over()
-                game_on = False
+        #collision with each other
+        if game.team_mode_choice == 1:
+            for timmy in snake.timmy_snake[1:]:
+                if snake_2.timmy_head.distance(timmy) < 10:
+                    snake_2.remove_tails()
+                    score_2_player.score_2 = 0
+                    score_2_player.clear()
+                    score_2_player.player_2_score_1v1()
+            for timmy in snake_2.timmy_snake[1:]:
+                if snake.timmy_head.distance(timmy) < 10:
+                    snake.remove_tails()
+                    score.score = 0
+                    score.clear()
+                    score.player_1_update()
 
 my_screen.mainloop()
 

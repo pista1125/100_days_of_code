@@ -52,7 +52,7 @@ class Snake:
             self.a = -20
         x = self.timmy_head.xcor()
         y = self.timmy_head.ycor()
-        self.timmy_head.goto(-x + self.a, y)
+        self.timmy_head.goto(int(-x + self.a), int(y))
 
     def wall_bounce_y(self):
         if self.timmy_head.ycor() > 270:
@@ -61,7 +61,7 @@ class Snake:
             self.b = -20
         x = self.timmy_head.xcor()
         y = self.timmy_head.ycor()
-        self.timmy_head.goto(x, -y + self.b)
+        self.timmy_head.goto(int(x), int(-y + self.b))
 
     def position_color_setting(self, color):
         self.starting_position = [(0, -40), (-20, -40), (-40, -40)]

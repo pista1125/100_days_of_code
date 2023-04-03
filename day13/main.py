@@ -40,13 +40,13 @@
 # #in Word_per_page line you don't need a duble = because you just wanted to set the variable, not to check
 
 
-# #Use a Debugger
-# def mutate(a_list):
-#   b_list = []
-#   for item in a_list:
-#     new_item = item * 2
-#   b_list.append(new_item)
-#   print(b_list)
-#
-# mutate([1,2,3,5,8,13])
+#Use a Debugger
+def mutate(a_list):
+  b_list = []
+  for item in a_list:
+    new_item = item * 2
+  b_list.append(new_item)
+  print(b_list)
+
+mutate([1,2,3,5,8,13])
 # you need indented a b_list line to for ciklus.

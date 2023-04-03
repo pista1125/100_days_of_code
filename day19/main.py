@@ -130,5 +130,5 @@
 # timmy.pendown()
 # timmy.circle(100)
 
-my_screen = Screen()
-my_screen.exitonclick()
+# my_screen = Screen()
+# my_screen.exitonclick()

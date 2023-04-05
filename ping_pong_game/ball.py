@@ -8,6 +8,12 @@ class Ball(Turtle):
         self.color("white")
 
     def move(self):
+        self.forward(10)
 
-        self.setheading(90)
-        self.forward(20)
+    def start_1(self):
+        self.setheading(180)
+        self.goto(0, 0)
+
+    def start_2(self):
+        self.setheading(0)
+        self.goto(0, 0)

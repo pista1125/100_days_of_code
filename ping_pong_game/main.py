@@ -35,13 +35,22 @@ my_screen.update()
 my_screen.listen()
 my_screen.onkeypress(player.move_UP_1player, "Up")
 my_screen.onkeypress(player.move_Down_1player, "Down")
+my_screen.onkeypress(player.pause, "space")
 my_screen.onkeypress(player.move_UP_2player, "w")
 my_screen.onkeypress(player.move_Down_2player, "s")
+
 game_on = True
 while game_on:
     my_screen.update()
     time.sleep(0.005)
-    ball.move()
+    if player.pause_button % 2 != 0:
+        ball.move()
+
+    #pause button
+    if player.pause_button % 2 == 0:
+        while player.pause_button % 2 == 0:
+            time.sleep(1)
+            my_screen.update()
 
     #collision with player
     for x in range(5):
@@ -58,10 +67,21 @@ while game_on:
 
     if ball.xcor() > int(WIDTH / 2):
         score_1.score_add_1()
+        time.sleep(1)
         ball.start_2()
+        player.pause()
+        while player.pause_button % 2 == 0:
+            #time.sleep(0.1)
+            my_screen.update()
+
     elif ball.xcor() < - int(WIDTH / 2):
         score_2.score_add_2()
+        time.sleep(1)
         ball.start_1()
+        player.pause()
+        while player.pause_button % 2 == 0:
+            #time.sleep(0.1)
+            my_screen.update()
 
 my_screen.exitonclick()
 

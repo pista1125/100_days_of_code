@@ -10,6 +10,7 @@ class Player:
         self.position_2_player_x = 430
         self.setheading_1 = [60, 30, 0, 330, 300]
         self.setheading_2 = [120, 150, 180, 210, 240]
+        self.pause_button = 1
 
     def create_1player(self):
         for item in range(5):
@@ -50,4 +51,7 @@ class Player:
         if self.player_2_timmy[4].ycor() > -230:
             for timmy in self.player_2_timmy:
                 timmy.backward(20)
+
+    def pause(self):
+        self.pause_button += 1
 

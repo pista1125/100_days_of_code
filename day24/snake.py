@@ -1,0 +1,58 @@
+from turtle import Turtle
+
+
+STARTING_POSITION = [(0, 0), (-20, 0), (-40, 0)]
+MOVE_DISTANCE = 20
+UP = 90
+DOWN = 270
+RIGHT = 0
+LEFT = 180
+class Snake:
+    def __init__(self):
+        self.timmy_snake = []
+        self.create_snake()
+        self.timmy_head = self.timmy_snake[0]
+
+    def create_snake(self):
+        for new_segment in STARTING_POSITION:
+            self.add_segment(new_segment)
+
+    def add_segment(self, position):
+        timmy = Turtle(shape="square")
+        timmy.color("white")
+        timmy.penup()
+        timmy.goto(position)
+        self.timmy_snake.append(timmy)
+
+    def move(self):
+        for item in range(len(self.timmy_snake) - 1, 0, -1):
+            new_x = self.timmy_snake[item - 1].xcor()
+            new_y = self.timmy_snake[item - 1].ycor()
+            self.timmy_snake[item].goto(new_x, new_y)
+        self.timmy_snake[0].forward(MOVE_DISTANCE)
+
+    def plus_snake(self):
+        self.add_segment(self.timmy_snake[-1].position())
+
+    def reset(self):
+        for x in self.timmy_snake:
+            x.goto(1000, 1000)
+        self.timmy_snake.clear()
+        self.create_snake()
+        self.timmy_head = self.timmy_snake[0]
+
+    def left(self):
+        if self.timmy_snake[0].heading() == UP or self.timmy_snake[0].heading() == DOWN:
+            self.timmy_snake[0].setheading(LEFT)
+
+    def right(self):
+        if self.timmy_snake[0].heading() == UP or self.timmy_snake[0].heading() == DOWN:
+            self.timmy_snake[0].setheading(RIGHT)
+
+    def up(self):
+        if self.timmy_snake[0].heading() == RIGHT or self.timmy_snake[0].heading() == LEFT:
+            self.timmy_snake[0].setheading(UP)
+
+    def down(self):
+        if self.timmy_snake[0].heading() == RIGHT or self.timmy_snake[0].heading() == LEFT:
+            self.timmy_snake[0].setheading(DOWN)

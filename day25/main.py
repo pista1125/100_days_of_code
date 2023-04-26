@@ -87,13 +87,34 @@ import pandas
 #4. US State project
 
 import turtle
-
+import pandas
 my_screen = turtle.Screen()
 my_screen.title("USA")
-my_screen.bgpic("blank_states_img.gif")
+image = "blank_states_img.gif"
+my_screen.addshape(image)
+turtle.shape(image)
 
+data = pandas.read_csv("50_states.csv")
+all_states = data.state.to_list()
+guessed_states = []
 
+while len(guessed_states) < 50:
+    answer_state_1 = my_screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="Whats the another state's name?")
+    answer_state = answer_state_1.title()
+    if answer_state == "Exit":
+        missing_states = []
+        for state in all_states:
+            if state not in guessed_states:
+                missing_states.append(state)
+        new_data = pandas.DataFrame(missing_states)
+        new_data.to_csv("states_to_learn.csv")
+        break
+    if answer_state in all_states:
+        guessed_states.append(answer_state)
+        t = turtle.Turtle()
+        t.hideturtle()
+        t.penup()
+        state_data = data[data.state == answer_state]
+        t.goto(int(state_data.x), int(state_data.y))
+        t.write(answer_state)
 
-
-
-my_screen.exitonclick()

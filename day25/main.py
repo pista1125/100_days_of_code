@@ -118,4 +118,4 @@ while len(guessed_states) < 50:
         t.goto(int(state_data.x), int(state_data.y))
         t.write(answer_state)
 
-#oke
+

@@ -1,6 +1,5 @@
 from tkinter import *
 import random
-
 option = ["Rock", "Paper", "Scissors"]
 Font = ("Courier", 20, "bold")
 comp_choice = None
@@ -11,6 +10,7 @@ player_win = 0
 def player_label():
     play_lab_1 = Label(text="Your choice is", font=Font)
     play_lab_1.grid(column=0, row= 3)
+
     play_lab = Label(text=play_choice, font=Font)
     play_lab.grid(column=0, row=4)
 
@@ -64,6 +64,7 @@ def game():
 
     win_label = Label(text=who_win, font=Font)
     win_label.grid(row=5, column=1)
+
 
 def new_game():
     want_play_again_label = Label(text="Do you want play again?", font=Font)

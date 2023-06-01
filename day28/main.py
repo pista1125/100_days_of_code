@@ -1,5 +1,7 @@
 from tkinter import *
 import math
+import beepy
+
 
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -49,11 +51,11 @@ def count_down(count):
         count_sec = f"0{count_sec}"
 
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
-    if count > 0:
+    if count >= 0:
         global timer
         timer = window.after(1000, count_down, count -1)
-
     else:
+        beepy.beep(sound=6)
         start_timer()
         marks = ""
         work_session = math.floor(reps / 2)

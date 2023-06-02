@@ -6,19 +6,22 @@ comp_choice = None
 play_choice = None
 who_win = None
 player_win = 0
+game_number = 0
 
 def player_label():
     play_lab_1 = Label(text="Your choice is", font=Font)
     play_lab_1.grid(column=0, row= 3)
 
-    play_lab = Label(text=play_choice, font=Font)
-    play_lab.grid(column=0, row=4)
+    canvas.itemconfig(scissors_image, image=scissor_img)
+    play_lab.config(text=play_choice)
+
+
 
 def computer_label():
     computer_label_1 = Label(text="Computer choice is", font=Font)
     computer_label_1.grid(row=3, column=2, pady=20)
-    computer_label = Label(text=comp_choice, font=Font)
-    computer_label.grid(row=4, column=2, pady=20)
+
+    computer_label_thing.config(text=comp_choice)
 
 def rock():
     global comp_choice
@@ -54,27 +57,39 @@ def scissors():
 def game():
     global who_win
     global player_win
+    global game_number
     if comp_choice == "Rock" and play_choice == "Rock" or comp_choice == "Paper" and play_choice == "Paper" or comp_choice == "Scissors" and play_choice == "Scissors":
         who_win = "Draw"
+        game_number += 1
     elif comp_choice == "Rock" and play_choice == "Paper" or comp_choice == "Paper" and play_choice == "Scissors" or comp_choice == "Scissors" and play_choice == "Rock":
         who_win = "You win"
+        game_number += 1
         player_win += 1
     elif comp_choice == "Rock" and play_choice == "Scissors" or comp_choice == "Paper" and play_choice == "Rock" or comp_choice == "Scissors" and play_choice == "Paper":
         who_win = "You Lose"
+        game_number += 1
 
-    win_label = Label(text=who_win, font=Font)
-    win_label.grid(row=5, column=1)
+    win_label.config(text=who_win)
 
 
 def new_game():
     want_play_again_label = Label(text="Do you want play again?", font=Font)
     want_play_again_label.grid(row=6, column=1, pady=20)
 
-    want_play_again_button_1 = Button(text="Yes", font=Font)
+    want_play_again_button_1 = Button(text="Yes", font=Font, command=new_game_yes)
     want_play_again_button_1.grid(row=7, column=0)
 
     want_play_again_button_2 = Button(text="No", font=Font)
     want_play_again_button_2.grid(row=7, column=2)
+
+def new_game_yes():
+    global game_number
+    global player_win
+
+    games_number_label = Label(text=f"{player_win}/{game_number}", font=Font)
+    games_number_label.grid(row=1, column=2)
+
+
 
 
 my_window = Tk()
@@ -98,6 +113,20 @@ paper_button.grid(row=2, column=1)
 scissors_button = Button(text="Scissors", command=scissors, font=Font)
 scissors_button.grid(row=2, column=2)
 
+play_lab = Label(text="", font=Font)
+play_lab.grid(column=0, row=4)
+
+computer_label_thing = Label(text="", font=Font)
+computer_label_thing.grid(row=4, column=2, pady=20)
+
+win_label = Label(text="", font=Font)
+win_label.grid(row=5, column=1)
+
+canvas = Canvas(width=200, height=224, bg="blue", highlightthickness=0)
+scissor_img = PhotoImage(file="scissors.png")
+
+scissors_image = canvas.create_image(100, 112)
+canvas.grid(column=0, row=4)
 
 
 my_window.mainloop()

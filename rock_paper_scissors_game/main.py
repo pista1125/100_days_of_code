@@ -12,7 +12,6 @@ def player_label():
     play_lab_1 = Label(text="Your choice is", font=Font)
     play_lab_1.grid(column=0, row= 3)
 
-    canvas.itemconfig(scissors_image, image=scissor_img)
     play_lab.config(text=play_choice)
 
 
@@ -22,12 +21,21 @@ def computer_label():
     computer_label_1.grid(row=3, column=2, pady=20)
 
     computer_label_thing.config(text=comp_choice)
+    if comp_choice == "Rock":
+        canvas_2.itemconfig(computer_image, image=rock_img)
+    elif comp_choice == "Scissors":
+        canvas_2.itemconfig(computer_image, image=scissor_img)
+    elif comp_choice == "Paper":
+        canvas_2.itemconfig(computer_image, image=paper_img)
+
+
 
 def rock():
     global comp_choice
     global play_choice
     play_choice = "Rock"
     comp_choice = random.choice(option)
+    canvas.itemconfig(player_image, image=rock_img)
     player_label()
     computer_label()
     game()
@@ -38,6 +46,7 @@ def paper():
     global play_choice
     play_choice = "Paper"
     comp_choice = random.choice(option)
+    canvas.itemconfig(player_image, image=paper_img)
     player_label()
     computer_label()
     game()
@@ -48,6 +57,7 @@ def scissors():
     global play_choice
     play_choice = "Scissors"
     comp_choice = random.choice(option)
+    canvas.itemconfig(player_image, image=scissor_img)
     player_label()
     computer_label()
     game()
@@ -90,11 +100,9 @@ def new_game_yes():
     games_number_label.grid(row=1, column=2)
 
 
-
-
 my_window = Tk()
 my_window.title("Rock, Paper, Scissors")
-my_window.config(padx=50, pady=50, bg="blue")
+my_window.config(padx=50, bg="blue")
 
 #Label
 
@@ -122,11 +130,22 @@ computer_label_thing.grid(row=4, column=2, pady=20)
 win_label = Label(text="", font=Font)
 win_label.grid(row=5, column=1)
 
-canvas = Canvas(width=200, height=224, bg="blue", highlightthickness=0)
+canvas = Canvas(width=200, height=200, bg="blue", highlightthickness=0)
+canvas_2 = Canvas(width=200, height=200, bg="blue", highlightthickness=0)
+#picture file
 scissor_img = PhotoImage(file="scissors.png")
+rock_img = PhotoImage(file="rock.png")
+paper_img = PhotoImage(file="paper.png")
 
-scissors_image = canvas.create_image(100, 112)
-canvas.grid(column=0, row=4)
+#playeer image
+player_image = canvas.create_image(100, 100)
+
+#computer image
+computer_image = canvas_2.create_image(100, 100)
+
+
+canvas.grid(column=0, row=5)
+canvas_2.grid(column=2, row=5)
 
 
 my_window.mainloop()

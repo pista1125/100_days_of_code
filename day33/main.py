@@ -80,7 +80,7 @@ import time
 
 MY_LAT = 45.930459
 MY_LONG = 18.354493
-time_now = datetime.now().hour
+
 parameters = {
     "lat": MY_LAT,
     "lng": MY_LONG,
@@ -101,13 +101,16 @@ def iss_overhead():
     iss_lattitude = float(data_iss["iss_position"]["latitude"])
 
     if MY_LONG -5 <= iss_longitude <= MY_LONG +5 and MY_LAT -5 <= iss_lattitude <= MY_LAT +5:
-        return True
+        return True, iss_lattitude, iss_longitude
+    else:
+        return False
+
 
 # Data from sun
 
 
 def is_night():
-
+    time_now = datetime.now().hour
     response = requests.get(url="https://api.sunrise-sunset.org/json", params=parameters)
     response.raise_for_status()
     data = response.json()
@@ -117,6 +120,8 @@ def is_night():
 
     if time_now >= sunset or time_now <= sunrise:
         return True
+    else:
+        return False
 
 #sending email
 
@@ -127,7 +132,7 @@ def send_email():
         connection.login(user=my_email, password=password)
         connection.sendmail(from_addr=my_email,
                             to_addrs="pista1125@gmail.com",
-                            msg="Subject:Iss overhead\n\nLook up")
+                            msg=f"Subject:Iss overhead\n\nLook up iss lattitude: {iss_overhead()[1]}, iss_longitude: {iss_overhead()[2]}")
 
 
 while True:

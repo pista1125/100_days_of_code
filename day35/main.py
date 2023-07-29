@@ -8,18 +8,16 @@ api_key = "69f04e4613056b159c2761a9d9e664d2"
 
 #SMS call
 account_sid = 'ACc9759d9b6afb3e259a72127956af0c4a'
-auth_token = 'cdf166def83b66d99299e499a0f9fb9b'
+auth_token = 'd25bad54509fa2c35b0ccd7c90584f96'
 
 
 def sending_sms():
     client = Client(account_sid, auth_token)
-
     message = client.messages.create(
         from_='+14327772526',
         body="Bring an umbrella",
         to='+36307270793'
     )
-
     print(message.sid)
 
 weather_params = {
@@ -42,5 +40,3 @@ for hour_data in weather_slice:
         will_rain = True
 if will_rain:
     sending_sms()
-
-

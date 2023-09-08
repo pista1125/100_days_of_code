@@ -8,7 +8,7 @@ api_key = "69f04e4613056b159c2761a9d9e664d2"
 
 #SMS call
 account_sid = 'ACc9759d9b6afb3e259a72127956af0c4a'
-auth_token = 'd25bad54509fa2c35b0ccd7c90584f96'
+auth_token = 'de6d55b5f61f2ca8cf5311c476815a22'
 
 
 def sending_sms():

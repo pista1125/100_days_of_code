@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flash Card Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        
+        #flashcard {
+            width: 300px;
+            height: 200px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        var flashcards = [
+	    { term: "Kon San?", definition: "Me Orsos Istvan sim"},
+	    { term: 'Kaj beshes?', definition: 'Me beshav ando Istvandi'},
+	    { term: 'Sode bershengo san?', definition: 'Me bish thaj shtare bershengo sim'},
+	    { term: 'Kaj arakhadyilan?', definition: 'Me rakhadyilem andej Nagyatada'},
+	    { term: 'Soski butyi keres?', definition: 'Me chi kerav butyi, sityuvav inke ando univerziteto'},
+	    { term: 'Kaj sityos?', definition: 'Me sityuvav ando univerziteto ando Pecho, pa TTK'},
+	    { term: 'So sityos?', definition: 'Me sityuvav matematika thaj fizika, me sityari avo'},
+	    { term: 'Situ romnyi vaj amalica?', definition: 'Ova, sima amalica'},
+	    { term: 'Sar bushol?', definition: 'Voj Adrienn bushol'},
+	    { term: 'So si lako anav?', definition: 'Lako anav Adrienn si'},
+	    { term: 'Situ phral vaj pheny?', definition: 'Ova, sima jekh pheny thaj duj phral'},
+	    { term: 'So keres ande tyiri slobodo vrama?', definition: 'Me ande muri slobodo vrama shporto kerav, programo, nashav'},
+	    { term: 'Soski vrama si adyes?', definition: 'Adyes lashi vrama si'}
+
+            // Add more flashcards here
+        ];
+        
+        var currentCardIndex = 0;
+        var showDefinition = false;
+        
+        function flipCard() {
+            var card = document.getElementById("flashcard");
+            showDefinition = !showDefinition;
+            
+            if (showDefinition) {
+                card.innerHTML = flashcards[currentCardIndex].definition;
+            } else {
+                card.innerHTML = flashcards[currentCardIndex].term;
+            }
+        }
+        
+        function nextCard() {
+            currentCardIndex++;
+            if (currentCardIndex === flashcards.length) {
+                currentCardIndex = 0;
+            }
+            resetCard();
+        }
+        
+        function resetCard() {
+            var card = document.getElementById("flashcard");
+            card.innerHTML = flashcards[currentCardIndex].term;
+            showDefinition = false;
+        }
+    </script>
+</head>
+<body>
+    <h1>Flash Card Application</h1>
+    
+    <div id="flashcard" onclick="flipCard()">Click to flip</div>
+    
+    <br>
+    
+    <button onclick="nextCard()">Next Card</button>
+    
+    <script>
+        resetCard();
+    </script>
+</body>
+</html>

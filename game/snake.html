@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snake Game</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: monospace;
+      background-color: #f7f7f7;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    #game-board {
+      display: inline-block;
+      background-color: #fff;
+      border: 1px solid #333;
+      margin-top: 20px;
+    }
+    
+    .cell {
+      width: 20px;
+      height: 20px;
+      background-color: #333;
+    }
+    
+    .snake-head {
+      background-color: #ff0000;
+    }
+    
+    .snake-tail {
+      background-color: #990000;
+    }
+    
+    .food {
+      background-color: #00cc00;
+    }
+  </style>
+</head>
+<body>
+  <h1>Snake Game</h1>
+  
+  <div id="game-board"></div>
+  
+  <script>
+    // Game board dimensions
+    var boardWidth = 20;
+    var boardHeight = 20;
+    
+    // Initial snake position and direction
+    var snake = [{ x: 10, y: 10 }];
+    var direction = 'right';
+    
+    // Initial food position
+    var food = { x: 5, y: 5 };
+    
+    // Function to draw the game board
+    function drawBoard() {
+      var gameBoard = document.getElementById('game-board');
+      
+      // Clear the board
+      gameBoard.innerHTML = '';
+      
+      for (var y = 0; y < boardHeight; y++) {
+        for (var x = 0; x < boardWidth; x++) {
+          var cell = document.createElement('div');
+          cell.className = 'cell';
+          
+          // Check if the cell is the snake's head
+          if (snake[0].x === x && snake[0].y === y) {
+            cell.className += ' snake-head';
+          } else {
+            // Check if the cell is part of the snake's tail
+            for (var i = 1; i < snake.length; i++) {
+              if (snake[i].x === x && snake[i].y === y) {
+                cell.className += ' snake-tail';
+                break;
+              }
+            }
+          }
+          
+          // Check if the cell contains the food
+          if (food.x === x && food.y === y) {
+            cell.className += ' food';
+          }
+          
+          gameBoard.appendChild(cell);
+        }
+      }
+    }
+    
+    // Function to handle key press events
+    function handleKeyPress(event) {
+      var key = event.keyCode;
+      
+      if (key === 37 && direction !== 'right') {
+        direction = 'left';
+      } else if (key === 38 && direction !== 'down') {
+        direction = 'up';
+      } else if (key === 39 && direction !== 'left') {
+        direction = 'right';
+      } else if (key === 40 && direction !== 'up') {
+        direction = 'down';
+      }
+    }
+    
+    // Function to update the game state
+    function updateGame() {
+      // Move the snake
+      var head = { x: snake[0].x, y: snake[0].y };
+      
+      if (direction === 'left') {
+        head.x--;
+      } else if (direction === 'up') {
+        head.y--;
+      } else if (direction === 'right') {
+        head.x++;
+      } else if
+      } else if (direction === 'down') {
+        head.y++;
+      }
+      
+      snake.unshift(head);
+      
+      // Check if the snake has eaten the food
+      if (head.x === food.x && head.y === food.y) {
+        // Generate new food position
+        food.x = Math.floor(Math.random() * boardWidth);
+        food.y = Math.floor(Math.random() * boardHeight);
+      } else {
+        // Remove the tail segment if the snake didn't eat the food
+        snake.pop();
+      }
+      
+      // Check if the snake has collided with itself or the game board boundaries
+      if (
+        head.x < 0 || head.x >= boardWidth ||
+        head.y < 0 || head.y >= boardHeight ||
+        checkCollision()
+      ) {
+        // Game over
+        clearInterval(gameInterval);
+        alert('Game Over!');
+        return;
+      }
+      
+      // Draw the updated game board
+      drawBoard();
+    }
+    
+    // Function to check if the snake has collided with itself
+    function checkCollision() {
+      var head = snake[0];
+      
+      for (var i = 1; i < snake.length; i++) {
+        if (snake[i].x === head.x && snake[i].y === head.y) {
+          return true;
+        }
+      }
+      
+      return false;
+    }
+    
+    // Start the game
+    var gameInterval = setInterval(updateGame, 200);
+    
+    // Add key press event listener
+    document.addEventListener('keydown', handleKeyPress);
+  </script>
+</body>
+</html>
+

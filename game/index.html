@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: monospace;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .symbol {
+      font-size: 64px;
+    }
+    
+    #result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  
+  <div>
+    <span class="symbol" id="rock" onclick="play('rock')">&#128308;</span>
+    <span class="symbol" id="paper" onclick="play('paper')">&#9995;</span>
+    <span class="symbol" id="scissors" onclick="play('scissors')">&#9996;</span>
+  </div>
+  
+  <div id="result"></div>
+  
+  <script>
+    function play(playerChoice) {
+      var symbols = ['rock', 'paper', 'scissors'];
+      var computerChoice = symbols[Math.floor(Math.random() * symbols.length)];
+      
+      var result;
+      
+      if (playerChoice === computerChoice) {
+        result = "It's a tie!";
+      } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = "You win!";
+      } else {
+        result = "You lose!";
+      }
+      
+      document.getElementById("result").innerText = "Player chose: " + playerChoice + "\nComputer chose: " + computerChoice + "\n\n" + result;
+    }
+  </script>
+</body>
+</html>

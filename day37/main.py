@@ -57,7 +57,7 @@ pixel_post_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 date = datetime.now()
 today = date.strftime("%Y%m%d")
 
-
+#oke
 post_config = {
     "date": today,
     "quantity": "1"

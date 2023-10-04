@@ -1,9 +1,11 @@
 import requests
-
+from datetime import datetime
 my_website = "https://pixe.la/@istvan95"
 
 TOKEN = "htetonsnteosnse"
 USERNAME = "istvan95"
+
+GRAPH_ID = "graph1"
 headers = {
     "X-USER-TOKEN": TOKEN
 }
@@ -27,7 +29,7 @@ user_params = {
 graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
 grap_config = {
-    "id": "graph1",
+    "id": GRAPH_ID,
     "name": "Gym Graph",
     "unit": "db",
     "type": "float",
@@ -43,5 +45,23 @@ graph_delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/graph2"
 # print(response.text)
 
 #Config exist graphs
+graph_config_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 
-#delete hello nn bkb
+# response = requests.put(url=graph_config_endpoint, json=grap_config, headers=headers)
+# print(response.text)
+
+
+# Post a pixel
+pixel_post_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+
+date = datetime.now()
+today = date.strftime("%Y%m%d")
+
+
+post_config = {
+    "date": today,
+    "quantity": "1"
+}
+
+response = requests.post(url=pixel_post_endpoint, json=post_config, headers=headers)
+print(response.text)

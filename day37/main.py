@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+
 my_website = "https://pixe.la/@istvan95"
 
 TOKEN = "htetonsnteosnse"
@@ -57,11 +58,14 @@ pixel_post_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 date = datetime.now()
 today = date.strftime("%Y%m%d")
 
-#oke
 post_config = {
     "date": today,
     "quantity": "1"
 }
 
-response = requests.post(url=pixel_post_endpoint, json=post_config, headers=headers)
-print(response.text)
+# response = requests.post(url=pixel_post_endpoint, json=post_config, headers=headers)
+# print(response.text)
+
+from goldhandtest import hello_pisti
+
+hello_pisti()

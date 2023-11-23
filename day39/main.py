@@ -1,48 +1,54 @@
-import requests
 from data_manager import DataManager
+from flight_search import FlightSearch
 
 sheet_data = DataManager()
+search_flight = FlightSearch()
 
-headers = {
-    'accept': 'application/json',
-    'apikey': 'a4WoTyNzP6TC4XomHLbrjLp8yi8tm6rn',
-}
+#if you need search iatacode, use this:
 
-params = {
-    'fly_from': 'FRA',
-    'fly_to': 'PRG',
-    'date_from': '23/11/2023',
-    'date_to': '03/12/2023',
-    'return_from': '23/11/2023',
-    'return_to': '06/12/2023',
-    'nights_in_dst_from': '2',
-    'nights_in_dst_to': '3',
-    'max_fly_duration': '20',
-    'ret_from_diff_city': 'true',
-    'ret_to_diff_city': 'true',
-    'one_for_city': '0',
-    'one_per_date': '0',
-    'adults': '2',
-    'children': '2',
-    'selected_cabins': 'C',
-    'mix_with_cabins': 'M',
-    'adult_hold_bag': '1,0',
-    'adult_hand_bag': '1,1',
-    'child_hold_bag': '2,1',
-    'child_hand_bag': '1,1',
-    'only_working_days': 'false',
-    'only_weekends': 'false',
-    'partner_market': 'us',
-    'max_stopovers': '2',
-    'max_sector_stopovers': '2',
-    'vehicle_type': 'aircraft',
-    'limit': '500',
-}
+#sheet_data.edit_data()
 
-#response = requests.get(url='https://api.tequila.kiwi.com/v2/search', params=params, headers=headers)
+#print(sheet_data.get_data())
 
-#print(response.text)
+#2. api call for cheapest fly
 
-#sheet_data.get_data()
-sheet_data.edit_data()
+flight_data = search_flight.search_cheaper_flight(fly_from="BUD", fly_to="PAR", day=90, min_night=2, max_night=7, person=1)
+
+#This is the cheapest option for fly
+
+from_city = flight_data["data"][0]["cityFrom"]
+to_city = flight_data["data"][0]["cityTo"]
+from_data = flight_data["data"][0]["route"][0]["local_departure"].split(".")[0]
+back_data = flight_data["data"][0]["route"][1]["local_departure"].split(".")[0]
+night = flight_data["data"][0]["nightsInDest"]
+valuta = "EUR"
+price = flight_data["data"][0]["price"]
+
+#create csv file with this
+sheet_data.create_csv(from_city, to_city, valuta, price, from_data, back_data, night)
+
+#3. search all the possible option:
+
+all_flight_data = search_flight.search_all_flight(fly_from="BUD", fly_to="PAR", day=90, min_night=2, max_night=7, person=1, price=64)
+
+for option in all_flight_data["data"]:
+    from_city = option["cityFrom"]
+    to_city = option["cityTo"]
+    from_data = option["route"][0]["local_departure"].split(".")[0]
+    back_data = option["route"][1]["local_departure"].split(".")[0]
+    night = option["nightsInDest"]
+    valuta = "EUR"
+    price = option["price"]
+    print(from_city,from_data,from_data,back_data,night,price)
+
+#If you want to add in sheety application
+# sheet_data.add_row(from_city, to_city, valuta, price, from_data, back_data, night)
+
+
+
+#sheet_data.create_csv(from_city, to_city, valuta, price, from_data, back_data, night)
+
+
+
+
 

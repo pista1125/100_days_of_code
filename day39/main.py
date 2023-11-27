@@ -22,7 +22,7 @@ end_day = datetime.now() + timedelta(days=90)
 #2. api call for cheapest fly
 
 
-flight_data = search_flight.search_all_flight(fly_from="Budapest", fly_to="Brussel", date_from=f"{today.day}/{today.month}/{today.year}", date_to=f"{end_day.day}/{end_day.month}/{end_day.year}", min_night=2, max_night=7, person=1)
+flight_data = search_flight.search_all_flight(fly_from="Budapest", fly_to="Párizs", date_from=f"{today.day}/{today.month}/{today.year}", date_to=f"{end_day.day}/{end_day.month}/{end_day.year}", min_night=2, max_night=7, person=1)
 
 flight_dic = {
     "City_From": {0: None},

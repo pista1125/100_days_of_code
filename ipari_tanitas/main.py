@@ -3,7 +3,7 @@ import random
 ertek = [random.randint(0, 200) for x in range(100)]
 szazalek = [random.randint(0, 100) for x in range(100)]
 
-darabszam = [x for x in range(100)]
+darab = [x for x in range(100)]
 
 
 Text =f'''
